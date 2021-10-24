@@ -38,6 +38,7 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Emmet
 Plug 'mattn/emmet-vim'
@@ -194,3 +195,8 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 let g:NERDTreeGitStatusUseNerdFonts = 1
 let g:airline_powerline_fonts = 1
+let g:NERDTreeGitStatusShowIgnored = 1
+
+" line number highlight
+highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+set cursorline
