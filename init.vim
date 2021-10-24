@@ -1,3 +1,9 @@
+"                _     
+"      ___ _  __(_)_ _ 
+"     / _ \ |/ / /  ' \
+"    /_//_/___/_/_/_/_/
+"
+
 source ~/.config/nvim/maps.vim
 
 " Plugins
@@ -6,8 +12,10 @@ call plug#begin('~/.vim/plugged')
 "Git
 Plug 'tpope/vim-fugitive'
 
-" cmp
+" Lsp
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
@@ -19,10 +27,17 @@ Plug 'vim-airline/vim-airline-themes'
 " themes
 Plug 'projekt0n/github-nvim-theme'
 Plug 'liuchengxu/space-vim-dark'
+Plug 'aswathkk/darkscene.vim'
+Plug 'joshdick/onedark.vim'
 
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" tree
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 
 " Emmet
 Plug 'mattn/emmet-vim'
@@ -36,8 +51,11 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 
 " Javascript
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+
 "Prettier
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
 
@@ -46,7 +64,8 @@ syntax on
 
 " Better colors and theme
 set termguicolors
-colorscheme github_*
+colorscheme onedark
+" colorscheme github_*
 
 " number of spaces in a <Tab>
 set tabstop=4
@@ -155,5 +174,23 @@ endif
 
 " Prettier config
 let g:prettier#autoformat = 0
+
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
+au FileType css,scss let b:prettier_exec_cmd = "prettier-stylelint"
+au! BufNewFile,BufRead *.tsx setf typescript.tsx
+let g:prettier#config#config_precedence = 'file-override'
+let g:prettier#config#trailing_comma = 'all'
+autocmd BufRead,BufNewFile *.ts set filetype=typescript.tsx
+
+" transparency
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+
+" Nerdtree config
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:airline_powerline_fonts = 1
