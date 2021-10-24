@@ -3,6 +3,9 @@ source ~/.config/nvim/maps.vim
 " Plugins
 call plug#begin('~/.vim/plugged')
 
+"Git
+Plug 'tpope/vim-fugitive'
+
 " cmp
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -27,8 +30,14 @@ Plug 'mattn/emmet-vim'
 " Commentary
 Plug 'tpope/vim-commentary'
 Plug 'suy/vim-context-commentstring'
+
 " Plug 'mxw/vim-jsx'
 Plug 'MaxMEllon/vim-jsx-pretty'
+
+" Javascript
+Plug 'pangloss/vim-javascript'
+"Prettier
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 call plug#end()
 
@@ -89,6 +98,8 @@ nnoremap <C-p> :Ctrlp<CR>
 
 " airline config
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='deus'
 
 " gitgutter config
 let g:gitgutter_max_signs = 500
@@ -136,3 +147,13 @@ endif
 " prevent ctrl+z killing session
 nnoremap <C-Z> <nop>
 inoremap <C-Z> <nop>
+
+" terminal maps
+if has('nvim')
+  tnoremap jk <C-\><C-n>
+endif
+
+" Prettier config
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
