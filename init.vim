@@ -19,6 +19,11 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'folke/lsp-colors.nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'windwp/nvim-autopairs'
 
 " status bar
 Plug 'vim-airline/vim-airline'
@@ -57,6 +62,12 @@ Plug 'peitalin/vim-jsx-typescript'
 
 "Prettier
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Vim surround
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -120,6 +131,7 @@ nnoremap <C-p> :Ctrlp<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='deus'
+set noshowmode
 
 " gitgutter config
 let g:gitgutter_max_signs = 500
@@ -200,3 +212,11 @@ let g:NERDTreeGitStatusShowIgnored = 1
 " line number highlight
 highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 set cursorline
+
+" move to the last character of previous line
+set whichwrap+=<,h
+set whichwrap+=>,l
+set whichwrap+=[,]
+
+" disabling folding by default
+set nofoldenable

@@ -82,3 +82,9 @@ map <C-s> :w <Enter>
 
 " newtab shortcut
 ca nt tabnew
+
+" Buffer Navigation
+nnoremap <Leader>3 :b#<CR>      " previous buffer
+nnoremap <Leader>n :bn<CR>      " next buffer
+nnoremap Q :bd!<CR>             " close buffer
+nnoremap <Leader>, :Buffers<CR> " browse buffers
